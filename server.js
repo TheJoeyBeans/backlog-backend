@@ -18,7 +18,7 @@ app.use(session({
 app.use(bodyParser.json({ extended: true }));
 app.use(methodOverride('_method'));
 
-var whitelist = ['http://localhost:3000', 'https://backlog-capstone-backend.herokuapp.com']
+var whitelist = ['http://localhost:3000', 'https://backlog-capstone-backend.herokuapp.com', 'https://backlog-capstone.herokuapp.com']
 var corsOptions = {
 	credentials: true,
 	origin: function (origin, callback) {
