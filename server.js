@@ -11,7 +11,7 @@ require('dotenv').config();
 require('./db/db');
 
 app.use(session({
-	secret: "this is a secret",
+	secret: process.env.SECRET_KEY,
 	resave: false,
 	saveUninitialized: false,
 	store: new MongoStore({mongooseConnection: mongoose.connection})
