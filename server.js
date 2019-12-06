@@ -1,4 +1,4 @@
-const env = require('dotenv').config();
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const app = express();
@@ -8,7 +8,6 @@ const session = require('express-session');
 const mongoose = require('mongoose');
 const MongoStore = require('connect-mongo')(session);
 
-require('dotenv').config();
 require('./db/db');
 
 app.use(session({
