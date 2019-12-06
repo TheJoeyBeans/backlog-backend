@@ -38,7 +38,7 @@ app.use(cors({
 // 	}
 // }
 
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 
 const registrationController = require('./controllers/register.js');
 app.use('/register', registrationController);
