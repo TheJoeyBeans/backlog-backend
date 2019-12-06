@@ -5,6 +5,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
 const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
 
 require('dotenv').config();
 require('./db/db');
@@ -12,7 +13,8 @@ require('./db/db');
 app.use(session({
 	secret: "this is a secret",
 	resave: false,
-	saveUninitialized: false
+	saveUninitialized: false,
+	store: new MongoStore({mongooseConnection: mongoose.connection})
 }))
 
 app.use(bodyParser.json({ extended: true }));
