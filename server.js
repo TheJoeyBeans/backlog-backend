@@ -12,12 +12,14 @@ require('dotenv').config();
 require('./db/db');
 
 app.use(session({
+	key: 'session.sid',
 	secret: process.env.SECRET_KEY,
 	resave: false,
 	saveUninitialized: false,
 	store: new MongoStore({mongooseConnection: mongoose.connection})
 }))
 
+app.use(express.static('public'))
 app.use(bodyParser.json({ extended: true }));
 app.use(methodOverride('_method'));
 const clientDevPort = 3000;
@@ -42,6 +44,10 @@ app.use(cors({
 
 const registrationController = require('./controllers/register.js');
 app.use('/register', registrationController);
+
+app.get('/', (req, res) => {
+	res.send(200)
+})
 
 app.listen(process.env.PORT, () => {
 	console.log('listening');
