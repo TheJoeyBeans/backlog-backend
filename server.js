@@ -20,18 +20,23 @@ app.use(session({
 
 app.use(bodyParser.json({ extended: true }));
 app.use(methodOverride('_method'));
-
-var whitelist = ['http://localhost:3000', 'https://backlog-capstone-backend.herokuapp.com', 'https://backlog-capstone.herokuapp.com']
-var corsOptions = {
+const clientDevPort = 3000;
+app.use(cors({ 
 	credentials: true,
-	origin: function (origin, callback) {
-		if (whitelist.indexOf(origin) !== -1){
-			callback(null, true)
-		} else {
-			callback(new Error('Not allowed by CORS'))
-		}
-	}
-}
+    origin: process.env.CLIENT_ORIGIN || `http://localhost:${clientDevPort}` 
+}));
+
+// var whitelist = ['http://localhost:3000', 'https://backlog-capstone-backend.herokuapp.com', 'https://backlog-capstone.herokuapp.com']
+// var corsOptions = {
+// 	credentials: true,
+// 	origin: function (origin, callback) {
+// 		if (whitelist.indexOf(origin) !== -1){
+// 			callback(null, true)
+// 		} else {
+// 			callback(new Error('Not allowed by CORS'))
+// 		}
+// 	}
+// }
 
 app.use(cors(corsOptions));
 
