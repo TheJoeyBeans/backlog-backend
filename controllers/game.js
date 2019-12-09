@@ -23,6 +23,17 @@ router.post('/', async (req, res) =>{
 	}
 });
 
+//Changes game status of playing, completed, or recommended.
+router.put('/:id', async(req, res) =>{
+	try{
+		const updatedGame = await Game.findByIdAndUpdate(req.params.id, {$set: req.body} , {new: true});
+		updatedGame.save();
+		res.send(updatedGame);
+	} catch(err){
+		res.send(err);
+	}
+})
+
 //Finds all of the backlogged games for a user.
 router.get('/', async(req, res) =>{
 	try{
