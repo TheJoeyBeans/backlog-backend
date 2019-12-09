@@ -37,6 +37,29 @@ router.get('/', async(req, res) =>{
 		console.log(err);
 		res.send(err);
 	}
-}); 
+});
+
+//Removes a game from a user's backlog and from the game's database.
+router.delete('/:id', async(req, res) =>{
+	try{
+		const currentUser = await User.findOne({'backlogGames': req.params.id});
+		await currentUser.backlogGames.remove(req.params.id);
+		await currentUser.save();
+		await Game.findByIdAndRemove(req.params.id);
+		res.send({message: 'successfully deleted', status: 200})
+	} catch(err){
+		console.log(err);
+		res.send(err);
+	}
+}) 
 
 module.exports = router;
+
+
+
+
+
+
+
+
+
