@@ -44,6 +44,9 @@ app.use(cors({
 const registrationController = require('./controllers/register.js');
 app.use('/register', registrationController);
 
+// const gamesController = require('./controllers/game.js');
+// app.use('/game', gamesController);
+
 app.get('/', (req, res) => {
 	res.send(200)
 })
