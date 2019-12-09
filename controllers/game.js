@@ -28,7 +28,7 @@ router.put('/:id', async(req, res) =>{
 	try{
 		const updatedGame = await Game.findByIdAndUpdate(req.params.id, {$set: req.body} , {new: true});
 		updatedGame.save();
-		res.send(updatedGame);
+		res.send({message: 'successfully updated', status: 200});
 	} catch(err){
 		res.send(err);
 	}
