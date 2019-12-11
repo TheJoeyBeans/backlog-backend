@@ -36,9 +36,12 @@ router.put('/:id', async(req, res) =>{
 
 router.put('/:id/comment', async(req, res) =>{
 	try{
-		const updatedGame = await Game.findByIdAndUpdate(req.params.id, {$push: {comments: req.body}} , {new: true});
+		console.log('Comment put body', req.body)
+		const updatedGame = await Game.findById(req.params.id);
+		updatedGame.comments.push(req.body.comment)
 		updatedGame.save();
-		res.send({message: 'successfully updated', status: 200});
+		console.log(updatedGame);
+		res.send({updatedGame: updatedGame, message: 'successfully updated', status: 200});
 	} catch(err){
 		res.send(err);
 	}
