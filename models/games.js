@@ -7,7 +7,8 @@ const gameSchema = new mongoose.Schema({
 	studio: String, 
 	playing: Boolean,
 	completed: Boolean, 
-	recommended: Boolean
+	recommended: Boolean,
+	comments: Array
 });
 
 const Game = mongoose.model('Game', gameSchema);
