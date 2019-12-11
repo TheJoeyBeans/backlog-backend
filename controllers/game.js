@@ -34,6 +34,15 @@ router.put('/:id', async(req, res) =>{
 	}
 })
 
+router.put('/:id/comment', async(req, res) =>{
+	try{
+		const updatedGame = await Game.findByIdAndUpdate(req.params.id, {$push: {comments: req.body}} , {new: true});
+		updatedGame.save();
+		res.send({message: 'successfully updated', status: 200});
+	} catch(err){
+		res.send(err);
+	}
+})
 //Finds all of the backlogged games for a user.
 router.get('/', async(req, res) =>{
 	try{
